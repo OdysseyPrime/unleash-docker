@@ -1,11 +1,14 @@
 version: "3.3"
 services:
   web:
-    build: .
-    ports:
+    image: kubernetesgoprime/utils:unleash
       - "4242:4242"
     environment:
       DATABASE_URL: postgres://postgres:unleash@db/postgres
+      GOOGLE_CLIENT_ID: client-id
+      GOOGLE_CLIENT_SECRET: client-secret
+      GOOGLE_CALLBACK_URL: http://192.168.99.100/auth/google/callback
+      SECRET: secret
     depends_on:
       - db
     command: > 
