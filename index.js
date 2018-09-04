@@ -1,8 +1,8 @@
 'use strict';
 
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '617383119989-51guogcj4koagsmlkg74jr5bsvd6nvv0.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || 'OlmNOOWx4EnS_aC70JYyDZZq';
-const GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL || 'http://192.168.99.100/auth/google/callback';
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || 'client-id';
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || 'client-secret';
+const GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL || 'http://192.168.99.100/api/auth/callback';
 
 const PORT = process.env.PORT || 4242;
 const DATABASE_URL = process.env.DATABASE_URL || 'postgres://unleash_user:passord@localhost:5432/unleash';
