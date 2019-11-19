@@ -19,8 +19,9 @@
 
 const  { User, AuthenticationRequired } = require('unleash-server');
 
-const passport = require('passport');
-const GoogleOAuth2Strategy = require('passport-google-auth').Strategy;
+const passport = require('@passport-next/passport');
+const GoogleOAuth2Strategy = require('@passport-next/passport-google-oauth2')
+  .Strategy;
 
 passport.use(
     new GoogleOAuth2Strategy(
@@ -36,7 +37,7 @@ passport.use(
                         name: profile.displayName,
                         email: profile.emails[0].value,
                     })
-            );
+                );
             } else {
                 // fail        
                 done(new Error("Invalid host domain"));
