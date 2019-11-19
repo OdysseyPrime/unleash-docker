@@ -1,0 +1,30 @@
+language: generic
+services:
+  - docker
+cache:
+  directories:
+    - node_modules
+env:
+  global:
+    - DOCKER_IMAGE_NAME="utils"
+before_install:
+    - nvm install 13.1.0
+    - npm i -g npm@6.12.1
+install:
+    - npm install
+before_script:
+    - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
+script:
+    # tags: true on deploy if we want to deploy only when commit is tagged, use TRAVIS_TAG
+    - docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:unleash-v1.0 .
+after_script:
+    # select the line here on what image you want to build, it has to match the one above
+    - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:unleash-v1.0
+branches:
+  only:
+    - master
+notifications:
+  email: 
+    on_success: never # default: change
+    on_failure: always # default: always
+  slack: odysseyprime:H7nJRIbl2tM1cNdCSeWqQ3Bs
