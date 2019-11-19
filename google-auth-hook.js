@@ -29,9 +29,11 @@ passport.use(
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             callbackURL: process.env.GOOGLE_CALLBACK_URL,
+            scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']
         },
         (accessToken, refreshToken, profile, done) => {
-            if(profile.domain === "odysseyprime.nl" || profile.domain === "goprime.io"){
+            const domain = profile._json.hd
+            if(domain === "odysseyprime.nl" || domain === "goprime.io") {
                 done(null,
                     new User({
                         name: profile.displayName,
